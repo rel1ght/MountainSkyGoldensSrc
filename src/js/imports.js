@@ -6,7 +6,9 @@ import "../css/-Fixed-Navbar-start-with-transparency-background-BS4-.css";
 import "../index.html";
 
 //JS
+
 import "./-Fixed-Navbar-start-with-transparency-background-BS4-.js";
+import "./gallery.js";
 import "bootstrap";
 
 //IMAGES

@@ -177,6 +177,16 @@ No media query for `xs` since this is the default in Bootstrap */
 	background-repeat: no-repeat;
 	background-size: cover;
 }
+.parallax4 {
+	background-image: url("./sleepy.jpg");
+	min-height: 100px;
+	display: flex;
+	/* Create the parallax scrolling effect */
+	background-attachment: fixed;
+	background-position: top;
+	background-repeat: no-repeat;
+	background-size: cover;
+}
 
 .input-group-btn {
 	display: inline;
@@ -221,4 +231,12 @@ No media query for `xs` since this is the default in Bootstrap */
 }
 a {
 	text-decoration: none !important;
+}
+#image-gallery .modal-footer {
+	display: block;
+}
+
+.thumb {
+	margin-top: 15px;
+	margin-bottom: 15px;
 }
