@@ -8,30 +8,51 @@ const path = require("path");
 module.exports = function(env, argv) {
 	return {
 		mode: "production",
-		entry: ["./src/app.js"],
-		optimization: {
-			minimizer: [new OptimizeCSSAssetsPlugin()]
-		},
+		entry: ["./src/js/index.js"],
+		// optimization: {
+		// 	minimizer: [new OptimizeCSSAssetsPlugin()]
+		// },
 		plugins: [
-			new CleanWebpackPlugin(["dist"]),
 			new HtmlWebpackPlugin({
-				title: "Webpack starter project",
+				title: "Mountain Sky Goldens",
 				template: path.resolve("./src/index.html")
-			}),
-			new MiniCssExtractPlugin({
-				filename: "[name].css",
-				chunkFilename: "[id].css"
-			}),
-			new MinifyPlugin()
+			})
+			// new MiniCssExtractPlugin({
+			// 	filename: "[name].css",
+			// 	chunkFilename: "[id].css"
+			// }),
+			// new MinifyPlugin()
 		],
+
+		output: {
+			path: path.resolve(__dirname + "/dist"),
+			filename: "bundle.js",
+			publicPath: "/"
+		},
 		module: {
 			rules: [
 				{
 					test: /\.scss$/,
 					use: [
-						MiniCssExtractPlugin.loader,
+						//MiniCssExtractPlugin.loader,
 						"css-loader",
 						"sass-loader"
+					]
+				},
+				{
+					test: /\.css$/,
+					use: ["style-loader", "css-loader"]
+				},
+				{
+					test: /\.(eot|woff|otf|woff2|ttf)(\?\S*)?$/,
+					use: [
+						{
+							loader: "file-loader",
+							options: {
+								outputPath: "./fonts",
+								name: "[name].[ext]"
+							}
+						}
 					]
 				},
 				{
@@ -50,35 +71,35 @@ module.exports = function(env, argv) {
 						{
 							loader: "file-loader",
 							options: {
-								outputPath: "./images",
+								outputPath: "./img",
 								name: "[name].[ext]"
 							}
-						},
-						{
-							loader: "image-webpack-loader",
-							options: {
-								mozjpeg: {
-									progressive: false,
-									quality: 45
-								},
-								// optipng.enabled: false will disable optipng
-								optipng: {
-									enabled: true
-								},
-								pngquant: {
-									quality: "65-90",
-									speed: 4
-								},
-								gifsicle: {
-									interlaced: true,
-									optimizationLevel: 3
-								},
-								// the webp option will enable WEBP
-								webp: {
-									quality: 20
-								}
-							}
 						}
+						// {
+						// 	loader: "image-webpack-loader",
+						// 	options: {
+						// 		mozjpeg: {
+						// 			progressive: false,
+						// 			quality: 45
+						// 		},
+						// 		// optipng.enabled: false will disable optipng
+						// 		optipng: {
+						// 			enabled: true
+						// 		},
+						// 		pngquant: {
+						// 			quality: "65-90",
+						// 			speed: 4
+						// 		},
+						// 		gifsicle: {
+						// 			interlaced: true,
+						// 			optimizationLevel: 3
+						// 		},
+						// 		// the webp option will enable WEBP
+						// 		webp: {
+						// 			quality: 20
+						// 		}
+						// 	}
+						// }
 					]
 				},
 				{
